@@ -22,7 +22,7 @@
                 <img src="./Components/Header/user-solid.svg" alt="usuario" class="icon-user">
             </div>
         <?php else: ?>
-            <a class="btn-green" href="#">Acceder</a>
+            <a class="btn-green" href="./App/Views/login.php">Acceder</a>
         <?php endif; ?>
     </div>
 </header>

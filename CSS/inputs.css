@@ -1,0 +1,71 @@
+/* 👇 Estilos para el pseudo-placeholder del input date */
+.date-placeholder {
+  position: relative;
+  width: 100%;
+}
+
+.date-placeholder input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: transparent; /* ocultamos texto hasta que el usuario seleccione */
+}
+
+.date-placeholder input[type="date"]:focus,
+.date-placeholder input[type="date"]:valid {
+  color: black; /* se muestra texto cuando hay valor */
+}
+
+.date-placeholder label {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  color: gray;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.date-placeholder input[type="date"]:focus + label, .date-placeholder input[type="date"]:valid + label {
+  top: -10px;
+  left: 8px;
+  font-size: 0.8rem;
+  color: #007bff;
+  background: white;
+  padding: 0 4px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: none;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  color: gray;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  background-color: white;
+  padding: 0 4px;
+}
+
+/* Cuando el input tiene foco o valor, el label flota arriba */
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -10px;
+  left: 8px;
+  font-size: 0.8rem;
+  color: #007bff;
+}
+
