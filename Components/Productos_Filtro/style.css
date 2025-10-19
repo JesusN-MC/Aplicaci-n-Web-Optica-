@@ -1,0 +1,66 @@
+    .btn-green {
+        background: var(--green);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-right: 10px;
+    }
+    /* margen extra solo para el botón de iniciar sesión en el header
+         así no afecta a otros .btn-green dentro de la página */
+    header > .btn-green {
+        margin-right: 18px;
+    }
+    .btn-green:hover {
+        background: #23913b;
+    }
+    .filter-bar {
+        position: fixed;
+        top: 48px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        z-index: 999;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0,94,166,0.06); /* sutil separación */
+        border-bottom: 10px solid rgba(0,94,166,0.06);
+    }
+    .filter-left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .filter-right {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-right: 10px;
+    }
+    select, button {
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        font-family: inherit;
+        font-size: 1em;
+    }
+
+    @media (max-width: 700px) {
+        .filter-bar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .filter-left, .filter-right {
+            width: 100%;
+            justify-content: center;
+        }
+    }
