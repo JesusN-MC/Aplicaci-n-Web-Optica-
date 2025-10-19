@@ -1,0 +1,124 @@
+@media (max-width: 700px) {
+    header {
+        flex-direction: row;
+        gap: 5px;
+        justify-content: space-around;
+    }
+
+    .logo {
+        font-size: 1.3em;
+    }
+    
+    /* aseguro que el margen del botón no rompa el layout en móviles */
+    header > .btn-green, .user-greeting {
+        margin-right: 20px;
+    }
+
+    /* oculto el decorativo si el espacio es muy reducido */
+    .logo::before {
+        display: none;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg); /* header destaca más */
+    box-shadow: var(--shadow);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+    /* Logo con tipografía elegante y acento visual */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: var(--blue);
+    font-size: 1.9em;
+    line-height: 1;
+}
+/* pequeño elemento circular decorativo antes del texto del logo */
+.logo::before {
+    content: "";
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: inline-block;
+}
+/* añadir degradado sutil al texto del logo para mejor presencia */
+.logo span {
+    background: linear-gradient(90deg, rgba(0,94,166,1), rgba(40,167,69,1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.12);
+    display: inline-block;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 7px;
+    padding: 0;
+    margin: 0;
+}
+nav li {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-weight: 500;
+    font-size: 0.95em;
+    color: var(--blue); /* opciones más visibles frente al contenido */
+}
+nav li:hover, nav li.active {
+    background: var(--blue);
+    color: var(--white);
+}
+.btn-green {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 10px;
+}
+header > .btn-green, .user-greeting {
+    margin-right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-green:hover {
+    background: #23913b;
+}
+
+a{
+    text-decoration: none;
+}
+
+.icon-user{
+    height: 18px;
+    width: 14px;
+}
+
+.user{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(216, 218, 255);
+}
