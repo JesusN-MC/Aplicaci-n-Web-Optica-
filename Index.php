@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,5 +12,7 @@
 <body>
     <?php include './Components/Header/header_productos.php'; ?>
     <?php include './Components/Productos_Filtro/filter.php'; ?>
+    
+    
 </body>
 </html>
