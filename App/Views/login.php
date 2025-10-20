@@ -18,21 +18,21 @@
       </div>
 
       <!-- login -->
-      <form id="login-form">
-        <div class="input-group">
-          <input type="email" name="correo" id="correo" required>
-          <label for="telefono">Correo Electronico</label>
-        </div>
+      <form id="login-form" action="../Drivers/init_season.php" method="POST">
+            <div class="input-group">
+            <input type="email" name="correo" id="correo" required>
+            <label for="">Correo Electronico</label>
+            </div>
 
-        <div class="password-container input-group">
-          <input type="password" maxlength="20" minlength="8" required>
-          <label for="telefono">Contraseña</label>
-        </div>
-        <button type="submit">Ingresar</button>
+            <div class="password-container input-group">
+            <input type="password" maxlength="20" minlength="8"  name="pass" required>
+            <label for="">Contraseña</label>
+            </div>
+            <button type="submit">Ingresar</button>
       </form>
 
       <!-- Registro -->
-      <form id="register-form" style="display:none;">
+      <form id="register-form" style="display:none;" action="../Drivers/insert_user.php" method="POST">
 
         <div class="input-group">
             <input type="text" id="nombre" name="nombre" pattern="^[^0-9]+$" required>
@@ -46,16 +46,11 @@
 
         <!-- 👇 Aquí el input date con placeholder simulado -->
         <div class="date-placeholder">
-          <input type="date" id="birthDate" required>
+          <input type="date" id="birthDate" name="fnac"required>
           <label for="birthDate">Fecha de nacimiento</label>
         </div>
 
-        <div class="input-group">
-            <input type="number" id="edad" name="edad" required>
-            <label for="edad">Edad</label>
-        </div>
-
-        <select>
+        <select name="genero">
             <option value="">Seleccione género (opcional)</option>
             <option value="Masculino">Masculino</option>
             <option value="Femenino">Femenino</option>
@@ -63,18 +58,18 @@
         </select>
 
         <div class="input-group">
-            <input type="tel" id="telefono" name="telefono" required>
+            <input type="tel" id="telefono" name="telefono">
             <label for="telefono">Teléfono (opcional)</label>
         </div>
 
         <div class="input-group">
           <input type="email" name="correo" id="correo" required>
-          <label for="telefono">Correo Electronico</label>
+          <label for="correo">Correo Electronico</label>
         </div>
 
         <div class="password-container input-group">
-          <input type="password" maxlength="20" minlength="8" required>
-          <label for="telefono">Contraseña</label>
+          <input type="password" maxlength="20" minlength="8" name="pass" required>
+          <label for="">Contraseña</label>
         </div>
 
         <button type="submit">Registrar</button>
