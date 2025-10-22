@@ -93,11 +93,10 @@ h3{
   user-select: none;
 }
 .center{
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
-button, a {
+button {
   text-align: center;
   background: var(--green);
   color: var(--white);
@@ -108,7 +107,7 @@ button, a {
   font-size: 1em;
 }
 
-button:hover, a:hover{
+button:hover{
   background: #23913b;
 }
 

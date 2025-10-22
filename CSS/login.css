@@ -24,7 +24,6 @@ body {
   border-radius: 15px;
   box-shadow: var(--shadow);
   padding: 45px 30px;
-  min-height: 540px;
 }
 .tabs {
   display: flex;
@@ -104,6 +103,5 @@ button:hover {
 @media (max-width: 500px) {
   .container {
     padding: 25px;
-    min-height: 500px;
   }
 }
