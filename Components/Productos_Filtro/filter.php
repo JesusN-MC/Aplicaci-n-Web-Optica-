@@ -1,3 +1,9 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <section class="filter-bar">
     <div class="filter-left">
         <select>
@@ -10,9 +16,9 @@
     </div>
     <div class="filter-right">
         <?php if(isset($_SESSION['usuario_rol'])): ?>
-            <?php if($_SESSION['usuario_rol'] == 'Admin'): ?>
-                <button class="btn-green">Gestionar Productos</button>
-                <button class="btn-green">Gestionar Categoría</button>
+            <?php if($_SESSION['usuario_rol'] == 'admin'): ?>
+                <button class="btn-green" onclick="location.href='./App/Views/gestion_categorias.php'">Gestionar Productos</button>
+                <button class="btn-green" onclick="location.href='./App/Views/gestion_productos.php'">Gestionar Categoría</button>
             <?php endif; ?>
         <?php endif; ?>
     </div>
