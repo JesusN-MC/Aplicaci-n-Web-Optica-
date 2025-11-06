@@ -27,5 +27,4 @@
     <?php endif; ?>
     </div>
 </header>
-<link rel="stylesheet" href="./Components/Header/style.css">
 <script src="./JS/user_options.js"></script>
