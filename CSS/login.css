@@ -19,7 +19,7 @@ body {
 }
 .container {
   width: 85vw;
-  max-width: 800px;
+  max-width: 600px;
   height: fit-content;
   background: var(--white);
   border-radius: 15px;
