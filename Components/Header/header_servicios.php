@@ -8,7 +8,7 @@
         <i class="logo"><span>Óptica</span></i>
         <nav>
             <ul>
-                <li>Productos</li>
+                <a href="../../index.php"><li>Productos</li></a>
                 <a href="../../servicios.php"><li class="active">Servicios</li></a>
             </ul>
         </nav>
@@ -30,4 +30,4 @@
 
 <link rel="stylesheet" href="../../Components/Header/style.css">
 <script src="../../JS/user_options.js"></script>
-
+<link rel="stylesheet" href="../../CSS/index.css">

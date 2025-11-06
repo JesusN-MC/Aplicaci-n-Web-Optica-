@@ -8,7 +8,7 @@
         <i class="logo"><span>Óptica</span></i>
         <nav>
             <ul>
-                <li class="active">Productos</li>
+                <a href="../../index.php"><li class="active">Productos</li></a>
                 <!-- Si no accede no puede navegar a Servicios -->
                 <?php if (isset($_SESSION['usuario_id']) && $_SESSION['usuario_id'] > 0): ?>
                     <a href="../../servicios.php"><li>Servicios</li></a>
@@ -32,3 +32,4 @@
 </header>
 <link rel="stylesheet" href="../../Components/Header/style.css">
 <script src="../../JS/user_options.js"></script>
+<link rel="stylesheet" href="../../CSS/index.css">

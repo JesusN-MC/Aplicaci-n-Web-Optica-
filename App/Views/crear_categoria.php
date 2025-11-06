@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../CSS/inputs.css">
 </head>
 <body>
-  <?php include '../../Components/Header/header_productos_gestion.php'; ?>
+  <?php include '../../Components/Header/header_productos.php'; ?>
   <main>
     <div class="container">
       

@@ -28,7 +28,7 @@
             <link rel="stylesheet" href="../../CSS/insert_user.css">
             </head>
             <body>
-            <?php include '../../Components/Header/header.php'; ?>
+            <?php include '../../Components/Header/header_login.php'; ?>
             <main>
                 <div class="container">
                 <?php 
