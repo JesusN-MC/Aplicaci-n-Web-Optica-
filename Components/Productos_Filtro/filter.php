@@ -17,8 +17,8 @@
     <div class="filter-right">
         <?php if(isset($_SESSION['usuario_rol'])): ?>
             <?php if($_SESSION['usuario_rol'] == 'admin'): ?>
-                <button class="btn-green" onclick="location.href='./App/Views/gestion_categorias.php'">Gestionar Productos</button>
-                <button class="btn-green" onclick="location.href='./App/Views/gestion_productos.php'">Gestionar Categoría</button>
+                <button class="btn-green" onclick="location.href='./App/Views/gestion_productos.php'">Gestionar Productos</button>
+                <button class="btn-green" onclick="location.href='./App/Views/gestion_categorias.php'">Gestionar Categoría</button>
             <?php endif; ?>
         <?php endif; ?>
     </div>

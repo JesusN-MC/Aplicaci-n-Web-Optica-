@@ -42,25 +42,19 @@
 
                 
                 foreach($resultado as $fila){
+                    if($fila['estatus'] == '1'){    
                     echo    '<tr>';
                     echo        '<td class="center">'.$fila['id'].'</td>';
                     echo        '<td>'.$fila['nombre'].'</td>';
-                    if($fila['estatus'] == '1'){
+                    
+
                         echo '<td>Activo</td>';
                         echo    '<td class="actions">
-                                    <button class="edit">Editar</button>
-                                    <button class="delete">Deshabilitar</button>
-                                </td>';
-                        echo '</tr>';
-                    }else{
-                        echo '<td>Inactivo</td>';
-                        echo    '<td class="actions">
-                                    <button class="edit" onclick="location.href="../../App/Drivers/edit_categoria.php?id='.$fila['id'].'" " >Editar</button>
-                                    <button class="habilitar">Habilitar</button>
+                                    <button class="edit" onclick="location.href="../../App/Drivers/edit_categoria.php?id='.$fila['id'].'" ">Editar</button>
+                                    <button class="delete ">Eliminar</button>
                                 </td>';
                         echo '</tr>';
                     }
-                    
                 }
             ?>
 

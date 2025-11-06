@@ -24,7 +24,7 @@
   pointer-events: none;
   transition: 0.2s ease all;
 }
-
+ 
 .date-placeholder input[type="date"]:focus + label, .date-placeholder input[type="date"]:valid + label {
   top: -10px;
   left: 8px;

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Óptica - Seguimiento de Cita</title>
+  <style>
+    :root {
+      --blue: #0077cc;
+      --green: #28a745;
+      --white: #ffffff;
+      --gray: #eef3f7;
+      --dark: #222;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--gray);
+      margin: 0;
+      padding: 50px 0;
+      display: flex;
+      justify-content: center;
+      color: var(--dark);
+    }
+
+    .container {
+      width: 95%;
+      max-width: 900px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 40px 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .appointment-info {
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
+      color: var(--white);
+      padding: 25px 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px 25px;
+    }
+
+    .appointment-info h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 10px 0;
+      font-size: 1.7rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .appointment-detail strong {
+      font-weight: 600;
+    }
+
+    .appointment-detail span {
+      font-weight: 400;
+      color: #f0f0f0;
+    }
+
+    .notes-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .notes-header h3 {
+      margin: 0;
+      color: var(--blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .btn {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #23913b;
+    }
+
+    .note {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px 0 15px 0;
+      background: #f9fbfc;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .note .actions {
+      display: flex;
+      justify-content: flex-end;
+      width: 90%;
+      margin-top: 5px;
+    }
+
+    .btn-delete {
+      background: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background: #b92a37;
+    }
+
+    .input-group {
+      position: relative;
+      width: 90%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .input-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: none;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.4rem;
+      min-height: 40px;
+    }
+
+    .input-group label {
+      position: absolute;
+      left: 14px;
+      top: 8px;
+      color: gray;
+      pointer-events: none;
+      transition: 0.2s ease all;
+      background-color: white;
+      padding: 0 4px;
+    }
+
+    .input-group textarea:focus + label,
+    .input-group textarea:valid + label {
+      top: -10px;
+      left: 8px;
+      font-size: 0.8rem;
+      color: var(--blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="appointment-info">
+      <h2>Detalles de la Cita</h2>
+      <div class="appointment-detail"><strong>Nombre:</strong> <span>Juan Pérez</span></div>
+      <div class="appointment-detail"><strong>Edad:</strong> <span>32 años</span></div>
+      <div class="appointment-detail"><strong>Fecha y hora:</strong> <span>18/10/2025 - 10:30 AM</span></div>
+      <div class="appointment-detail"><strong>Motivo:</strong> <span>Cambio de graduación</span></div>
+      <div class="appointment-detail"><strong>Descripción:</strong> <span>Revisión de lentes actuales y ajuste de fórmula.</span></div>
+      <div class="appointment-detail"><strong>Teléfono:</strong> <span>555-123-4567</span></div>
+    </section>
+
+    <section class="notes-section">
+      <div class="notes-header">
+        <h3>Notas de Seguimiento</h3>
+        <button class="btn" id="addNote">+ Agregar nota</button>
+      </div>
+      <div id="notesList"></div>
+    </section>
+  </div>
+
+  <script>
+    const notesList = document.getElementById('notesList');
+    const addNoteBtn = document.getElementById('addNote');
+
+    function autoGrow(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    function createNoteElement(title = '', content = '') {
+      const note = document.createElement('div');
+      note.classList.add('note');
+      note.innerHTML = `
+        <div class="input-group">
+          <textarea rows="1" required>${title}</textarea>
+          <label>Título</label>
+        </div>
+        <div class="input-group">
+          <textarea rows="2" required>${content}</textarea>
+          <label>Contenido</label>
+        </div>
+        <div class="actions">
+          <button class="btn btn-delete">Eliminar nota</button>
+        </div>
+      `;
+
+      note.querySelectorAll('textarea').forEach(area => {
+        area.addEventListener('input', () => autoGrow(area));
+        autoGrow(area);
+      });
+
+      note.querySelector('.btn-delete').addEventListener('click', () => {
+        note.remove();
+        checkEmpty();
+      });
+
+      notesList.appendChild(note);
+    }
+
+    function checkEmpty() {
+      if (notesList.children.length === 0) {
+        createNoteElement('', '');
+      }
+    }
+
+    addNoteBtn.addEventListener('click', () => createNoteElement('', ''));
+
+    window.addEventListener('DOMContentLoaded', checkEmpty);
+  </script>
+</body>
+</html>
