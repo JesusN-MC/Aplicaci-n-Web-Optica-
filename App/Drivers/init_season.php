@@ -5,11 +5,10 @@
         include('../Models/usuario.php');
         $clase = new Usuario();
 
-        // Validar si el correo ya existe
         $usuario = $clase->consultarCorreo($correo);
         if (is_array($usuario) && $usuario['correo'] == $correo && $usuario['contraseña'] == $pass) {
             $usuario = $clase->consultarCorreo($correo);
-            session_start(); // Inicia la sesión siempre
+            session_start(); 
             
             $_SESSION['usuario_id'] = $usuario['id'];
             $_SESSION['usuario_nombre'] = $usuario['nombre'];

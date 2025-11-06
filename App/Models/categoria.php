@@ -17,6 +17,12 @@
             return $respuesta;
         }
 
+        function eliminar($id){
+            $consulta = "DELETE FROM categoria WHERE iD = '{$id}'";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
+
         
     }
 ?>
