@@ -13,13 +13,12 @@
     <div class="container">
     <?php
         $nombre = $_POST['nombre'];
-        $apellidos= $_POST['apellidos'];
+        $apellido= $_POST['apellido'];
         $fnac =  $_POST['fnac'];
         $genero =  $_POST['genero'];
         $telefono =  $_POST['telefono'];
         $correo = $_POST['correo'];
         $pass= $_POST['pass'];
-        $rol= $_POST['rol'];
 
         include('../Models/usuario.php');
         $clase = new Usuario();

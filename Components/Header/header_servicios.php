@@ -16,10 +16,10 @@
     <?php if(isset($_SESSION['usuario_nombre'])): ?>
         <span><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
         <div class="user" id="userMenuToggle">
-        <img src="./Components/Header/user-solid.svg" alt="usuario" class="icon-user">
+        <img src="../../Components/Header/user-solid.svg" alt="usuario" class="icon-user">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="./App/Views/editar_usuario.php">Editar</a>
-                <a href="./App/Controllers/logout.php">Salir</a>
+                <a href="../../App/Views/editar_usuario.php">Editar</a>
+                <a href="../../App/Controllers/logout.php">Salir</a>
             </div>
         </div>
     <?php else: ?>
@@ -28,5 +28,6 @@
     </div>
 </header>
 
+<link rel="stylesheet" href="../../Components/Header/style.css">
 <script src="../../JS/user_options.js"></script>
 

@@ -19,16 +19,16 @@
         <?php if(isset($_SESSION['usuario_nombre'])): ?>
             <span><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
             <div class="user" id="userMenuToggle">
-            <img src="./Components/Header/user-solid.svg" alt="usuario" class="icon-user">
+            <img src="../../Components/Header/user-solid.svg" alt="usuario" class="icon-user">
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="./App/Views/editar_usuario.php">Editar Perfil</a>
-                    <a href="./App/Drivers/logout.php">Cerrar Sesion</a>
+                    <a href="../../App/Views/editar_usuario.php">Editar Perfil</a>
+                    <a href="../../App/Drivers/logout.php">Cerrar Sesion</a>
                 </div>
             </div>
         <?php else: ?>
-            <a class="btn-green" href="./App/Views/login.php">Acceder</a>
+            <a class="btn-green" href="../../App/Views/login.php">Acceder</a>
         <?php endif; ?>
     </div>
 </header>
-<link rel="stylesheet" href="./Components/Header/style.css">
-<script src="./JS/user_options.js"></script>
+<link rel="stylesheet" href="../../Components/Header/style.css">
+<script src="../../JS/user_options.js"></script>
