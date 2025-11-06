@@ -20,6 +20,7 @@ body {
 .container {
   width: 85vw;
   max-width: 800px;
+  height: fit-content;
   background: var(--white);
   border-radius: 15px;
   box-shadow: var(--shadow);
@@ -103,5 +104,12 @@ button:hover {
 @media (max-width: 500px) {
   .container {
     padding: 25px;
+    min-height: 500px;
   }
+}
+
+main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

@@ -8,3 +8,4 @@
     </div>
 </header>
 <link rel="stylesheet" href="../../Components/Header/style.css">
+<link rel="stylesheet" href="../../CSS/index.css">
