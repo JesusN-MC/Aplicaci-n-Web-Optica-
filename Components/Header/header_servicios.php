@@ -9,7 +9,7 @@
         <nav>
             <ul>
                 <li>Productos</li>
-                <li class="active">Servicios</li>
+                <a href="../../servicios.php"><li class="active">Servicios</li></a>
             </ul>
         </nav>
     <div class="user-greeting">
@@ -23,9 +23,8 @@
             </div>
         </div>
     <?php else: ?>
-        <a class="btn-green" href="./App/Views/login.php">Acceder</a>
+        <a class="btn-green" href="../../App/Views/login.php">Acceder</a>
     <?php endif; ?>
     </div>
 </header>
-<link rel="stylesheet" href="./Components/Header/style.css">
-<script src="./JS/user_options.js"></script>
+<script src="../../JS/user_options.js"></script>

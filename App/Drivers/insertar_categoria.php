@@ -19,7 +19,6 @@
         $clase = new Categoria();
 
         
-        // Guardar categoria
         if ($clase->guardar($nombre)) {
             
             echo "<h3>Categoria Registrada de Manera Exitosa</h3>";

@@ -11,7 +11,7 @@
   <?php include '../../Components/Header/header_productos_gestion.php'; ?>
   <main>
     <div class="container">
-      <!-- login -->
+      
       <form id="login-form" action="../Drivers/insertar_categoria.php" method="POST">
             <div class="input-group">
                 <input type="text" name="nombre" id="nombre" required>

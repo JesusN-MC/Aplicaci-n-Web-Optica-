@@ -8,10 +8,10 @@
         <i class="logo"><span>Óptica</span></i>
         <nav>
             <ul>
-                <li class="active">Productos</li>
+                <a href="./index.php"><li>Productos</li></a>
                 <!-- Si no accede no puede navegar a Servicios -->
                 <?php if (isset($_SESSION['usuario_id']) && $_SESSION['usuario_id'] > 0): ?>
-                    <a href="../../servicios.php"><li>Servicios</li></a>
+                    <a href="./servicios.php"><li class="active">Servicios</li></a>
                 <?php endif; ?>
             </ul>
         </nav>
