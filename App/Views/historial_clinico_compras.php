@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../CSS/index.css">
   <link rel="stylesheet" href="../../CSS/gestion_result.css">
   <link rel="stylesheet" href="../../Components/Header/style.css">
-  <link rel="stylesheet" href="historial_clinico_compras.css">
+  <link rel="stylesheet" href="../../CSS/historial_clinico_compras.css">
 </head>
 <body>
 
