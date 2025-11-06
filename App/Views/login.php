@@ -40,7 +40,7 @@
         </div>
 
         <div class="input-group">
-            <input type="text" id="apellidos" name="apellidos" pattern="^[^0-9]+$" required>
+            <input type="text" id="apellidos" name="apellido" pattern="^[^0-9]+$" required>
             <label for="apellidos">Apellidos</label>
         </div>
 

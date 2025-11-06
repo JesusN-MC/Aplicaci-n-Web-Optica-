@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Perfil</title>
-    <link rel="stylesheet" href="../../Components/Header/style.css">
+    <link rel="stylesheet" href="../../CSS/index.css">
 </head>
 <body>
-    <?php
-    include("../../Components/Header/header_servicios.php");
-    ?>
+    
+    <?php include '../../Components/Header/header_servicios.php'; ?>
 
      <div class="verPerfil">
     <h2>Nombre del Usuario</h2>
@@ -41,12 +42,6 @@
 
 
 <style>
-    body {        
-        font-family: 'Playfair Display', serif;
-        background-color: #f4f6f8;
-        margin: 0;
-        padding: 0;
-    }
 
     .verPerfil {
       max-width: 500px;

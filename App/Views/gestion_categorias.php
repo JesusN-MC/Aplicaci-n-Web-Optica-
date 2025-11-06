@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../CSS/gestion_producto.css">
 </head>
 <body>
-    <?php include '../../Components/Header/header_productos_gestion.php'; ?>
+    <?php include '../../Components/Header/header_productos.php'; ?>
     <!-- subheader -->
     <section class="filter-bar">
         <div class="filter-left">
