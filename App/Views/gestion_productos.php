@@ -1,20 +1,81 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Productos</title>
-<link rel="stylesheet" href="../../CSS/gestion_result.css">
-<link rel="stylesheet" href="../../Components/Header/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+    <link rel="stylesheet" href="../../Components/Productos_Filtro/style.css">
+    <link rel="stylesheet" href="../../CSS/gestion_producto.css">
 </head>
 <body>
-  <?php include '../../Components/Header/header_servicios.php'; ?>
+    <?php include '../../Components/Header/header_productos.php'; ?>
+    <!-- subheader -->
+    <section class="filter-bar">
+        <div class="filter-left">
+            <h2>Gestion de Productos</h2>
+        </div>
+        <div class="filter-right">
+            <button class="btn-green" onclick="location.href='../../App/Views/crear_producto.php'">Crear Producto</button>
+        </div>
+    </section>
 
+    <table>
+        <thead>
+            <tr>
+                <th class="center">ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Categoria</th>
+                <th>Estatus</th>
+                <th class="center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                include '../Models/producto.php';
+                $clase = new Producto();
+                $resultado = $clase->mostrar();
 
-  <h1>Gestión de Productos</h1>
+                
+                foreach($resultado as $fila){
+                    if($fila['estatus'] == '1'){    
+                    echo    '<tr>';
+                    echo        '<td class="center">'.$fila['id'].'</td>';
+                    echo        '<td>'.$fila['nombre'].'</td>';
+                    echo        '<td>'.$fila['marca'].'</td>';
+                    echo        '<td>'.$fila['categoria'].'</td>';
+                    
+                        
+                        echo '<td>Activo</td>';
+                        echo    '<td class="actions">
+                                    <button class="edit" onclick="location.href=\'../../App/Views/actualizar_categoria.php?categoria='.$fila['id'].'\'">Editar</button>
+                                    <button class="delete" onclick="location.href=\'../../App/Drivers/deshabilitar_producto.php?producto='.$fila['id'].'\'">Desactivar</button>
+                                </td>';
+                        echo '</tr>';
+                    }else{
+                        echo    '<tr>';
+                        echo        '<td class="center">'.$fila['id'].'</td>';
+                        echo        '<td>'.$fila['nombre'].'</td>';
+                        echo        '<td>'.$fila['marca'].'</td>';
+                        echo        '<td>'.$fila['categoria'].'</td>';
+                    
+                        
+                        echo '<td>Inactivo</td>';
+                        echo    '<td class="actions">
+                                    <button class="edit" onclick="location.href="../../App/Drivers/edit_categoria.php?id='.$fila['id'].'" ">Editar</button>
+                                    <button class="btn-green min" onclick="location.href=\'../../App/Drivers/habilitar_producto.php?producto='.$fila['id'].'\'"">Habilitar</button>
+                                </td>';
+                        echo '</tr>';
+                    }
+                }
+            ?>
 
-  
-
+        </tbody>
+    </table>
 </body>
 </html>

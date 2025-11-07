@@ -44,18 +44,20 @@
             <label for="apellidos">Apellidos</label>
         </div>
 
-        <!-- 👇 Aquí el input date con placeholder simulado -->
+
         <div class="date-placeholder">
           <input type="date" id="birthDate" name="fnac"required>
           <label for="birthDate">Fecha de nacimiento</label>
         </div>
 
-        <select name="genero">
-            <option value="">Seleccione género (opcional)</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Otro">Otro</option>
-        </select>
+        <div class="select-group">
+          <select name="genero">
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+          </select>
+          <label>Seleccione género (opcional)</label>
+        </div>
 
         <div class="input-group">
             <input type="tel" id="telefono" name="telefono">

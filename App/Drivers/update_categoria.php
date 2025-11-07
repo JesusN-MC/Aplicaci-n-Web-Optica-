@@ -14,14 +14,15 @@
     <div class="container">
     <?php
         $nombre = $_POST['nombre'];
+        $id = $_POST['id'];
 
         include('../Models/categoria.php');
         $clase = new Categoria();
 
         
-        if ($clase->guardar($nombre)) {
+        if ($clase->actualizar($id, $nombre)) {
             
-            echo "<h3>Categoria Registrada de Manera Exitosa</h3>";
+            echo "<h3>Categoria Actualizada de Manera Exitosa</h3>";
             echo "<div class='center'>
                     <a class='btn-green' href='../../App/Views/gestion_categorias.php'>Regresar</a>
                   </div>";

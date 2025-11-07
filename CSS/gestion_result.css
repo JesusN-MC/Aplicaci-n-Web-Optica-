@@ -15,7 +15,7 @@ body {
   padding-top: 60px; /* Espacio reservado para header externo */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
 }
 .container {
