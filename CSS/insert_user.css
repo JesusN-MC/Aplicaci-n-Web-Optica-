@@ -14,12 +14,12 @@ body {
   padding-top: 60px; /* Espacio reservado para header externo */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
 }
 .container {
   width: 85vw;
-  max-width: 800px;
+  max-width: 600px;
   background: var(--white);
   border-radius: 15px;
   box-shadow: var(--shadow);

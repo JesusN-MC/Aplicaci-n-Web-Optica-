@@ -8,39 +8,97 @@
   <link rel="stylesheet" href="../../CSS/inputs.css">
 </head>
 <body>
-     <?php include '../../Components/Header/header_productos_gestion.php'; ?>
-  <main>
+     <?php include '../../Components/Header/header_productos.php'; ?>
+  <main style="margin: auto 5vh; min-height: 100%; height: ;">
     <div class="container">
       <form id="login-form" action="../Drivers/reservar_citas.php" method="POST">
             <div class="input-group">
                 <input type="text" name="nombre" id="nombre" required>
-                <label for="nombre">Nombre Categoria</label> <br>
+                <label for="nombre">Nombre del Producto</label> <br>
+            </div>
+            <div class="input-group">
+                <input type="text" name="marca" id="marca" required>
+                <label for="marca">Marca</label> <br>
+            </div>
+            
+            <div class="textarea-group">
+              <textarea name="descripcion" required></textarea>
+              <label>Descripción</label>
+            </div>
+
+            
+
+            
+            <div class="select-group">
+              <select name="categoria" id="categoria">
+              
+            <?php 
+                include '../Models/categoria.php';
+                $categoria = new Categoria();
+                $resultado = $categoria->mostrar();
+
+                foreach($resultado as $fila){
+                    if($fila['estatus'] == '1'){    
+                    echo    '<option value="'.$fila['id'].'">'.$fila['nombre'].'</option>';
+                    }
+                }
+            ?>
+              </select>
+              <label>Categoría</label>
             </div>
             <div class="input-group">
                 <input type="number" name="precio" id="precio" required>
                 <label for="precio">Precio</label> <br>
             </div>
-            <div class="input-group">
-                <textArea type="text" name="descripcion" id="descripcion" required></textArea>
-                <label for="descripcion">Descripcion</label> <br>
-            </div>
-            <div>
-    
-              <select name="stock">
-            <option value="">Stock</option>
-            <option value="disponible">Disponible</option>
-            <option value="agotado">Agotado</option>
-        </select>
 
-        </div>
             <div class="input-group">
-                <input type="text" name="categoria" id="categoria" required>
-                <label for="categoria">Categoria</label> <br>
+                <input type="number" name="stock" id="stock" required>
+                <label for="stock">Stock</label> <br>
             </div>
 
+            <div class="file-group">
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <label for="imagen">Imagen del producto</label>
+            </div>
+
+            <!-- Contenedor de preview oculto hasta que haya imagen -->
+            <div class="preview-wrapper" id="preview-wrapper">
+                <button type="button" id="remove-img" class="remove-img">✕</button>
+                <img id="preview-img">
+            </div>
+            
+            <button style="margin-top: 20px" type="submit">Registrar Categoria</button>
             <button onclick="location.href='../../App/Views/gestion_categorias.php'">Regresar</button>
       </form>
     </div>
   </main>
+<script>
+  const input = document.getElementById("imagen");
+  const preview = document.getElementById("preview-img");
+  const wrapper = document.getElementById("preview-wrapper");
+  const removeBtn = document.getElementById("remove-img");
+
+  input.addEventListener("change", () => {
+      const file = input.files[0];
+      
+      if (file) {
+          preview.src = URL.createObjectURL(file);
+          wrapper.style.display = "block";
+          input.style.display = "none"; // Ocultar cuadro de carga
+          input.required = false; // permitir quitar y no fallar submit
+      }
+  });
+
+  removeBtn.addEventListener("click", () => {
+      input.value = "";
+      preview.src = "";
+      wrapper.style.display = "none";
+      input.style.display = "block"; // mostrar cuadro de carga
+      input.required = true;
+  });
+</script>
+
+
+
 </body>
 </html>
