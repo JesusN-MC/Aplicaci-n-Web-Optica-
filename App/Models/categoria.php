@@ -17,6 +17,12 @@
             return $respuesta;
         }
 
+        function activas(){
+            $consulta = "SELECT * FROM categoria WHERE estatus = 1";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
+
         function deshabilitar($id){
             $consulta = "UPDATE categoria SET estatus = 0 WHERE id = '{$id}'";
             $respuesta = $this->conexion->query($consulta);
