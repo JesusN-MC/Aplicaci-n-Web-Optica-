@@ -19,7 +19,7 @@
         <img src="../../Components/Header/user-solid.svg" alt="usuario" class="icon-user">
             <div class="dropdown-menu" id="dropdownMenu">
                 <a href="../../App/Views/editar_usuario.php">Editar</a>
-                <a href="../../App/Drivers/logout.php">Salir</a>
+                <a href="../../App/Drivers/logout.php">Cerrar Sesión</a>
             </div>
         </div>
     <?php else: ?>
