@@ -7,11 +7,11 @@
      <link rel="stylesheet" href="../../CSS/login.css">
   <link rel="stylesheet" href="../../CSS/inputs.css">
 </head>
-<body>
-     <?php include '../../Components/Header/header_productos.php'; ?>
-  <main style="margin: auto 5vh; min-height: 100%; height: ;">
+<body style="min-height: 120vh;" >
+  <?php include '../../Components/Header/header_productos.php'; ?>
+  <main style="align-items: center;" >
     <div class="container">
-      <form id="login-form" action="../Drivers/reservar_citas.php" method="POST">
+      <form id="login-form" action="../Drivers/insertar_producto.php"" method="POST" enctype="multipart/form-data"4>
             <div class="input-group">
                 <input type="text" name="nombre" id="nombre" required>
                 <label for="nombre">Nombre del Producto</label> <br>
@@ -19,16 +19,13 @@
             <div class="input-group">
                 <input type="text" name="marca" id="marca" required>
                 <label for="marca">Marca</label> <br>
-            </div>
+            </div> 
             
             <div class="textarea-group">
               <textarea name="descripcion" required></textarea>
               <label>Descripción</label>
             </div>
 
-            
-
-            
             <div class="select-group">
               <select name="categoria" id="categoria">
               
@@ -61,13 +58,12 @@
                 <label for="imagen">Imagen del producto</label>
             </div>
 
-            <!-- Contenedor de preview oculto hasta que haya imagen -->
             <div class="preview-wrapper" id="preview-wrapper">
                 <button type="button" id="remove-img" class="remove-img">✕</button>
                 <img id="preview-img">
             </div>
             
-            <button style="margin-top: 20px" type="submit">Registrar Categoria</button>
+            <button style="margin-top: 20px" type="submit">Registrar Producto</button>
             <button onclick="location.href='../../App/Views/gestion_categorias.php'">Regresar</button>
       </form>
     </div>
