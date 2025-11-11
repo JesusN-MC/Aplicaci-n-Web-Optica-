@@ -6,21 +6,66 @@
     <title>Ver Perfil</title>
     <link rel="stylesheet" href="../../CSS/login.css">
     <link rel="stylesheet" href="../../CSS/inputs.css">
+    <link rel="stylesheet" href="../../CSS/index.css">
+    <link rel="stylesheet" href="../../CSS/gestion_result.css">
+    <link rel="stylesheet" href="../../Components/Header/style.css">
+    <link rel="stylesheet" href="historial_clinico_compras.css">
 </head>
 <body>
     
     <?php include '../../Components/Header/header_servicios.php'; ?>
     <?php if($_SESSION['usuario_rol']=='admin'){
-      
+      echo '<div class="verPerfil">
+    <h2>Nombre del Usuario</h2>
 
+    <div class="input-group">
+      <input type="text" name="nombre" id="nombre" disabled>
+      <label for="nombre">Nombres</label>
+    </div>
+   
+    <div class="input-group">
+      <input type="text" name="nombre" id="nombre" disabled>
+      <label for="nombre">Correo</label>
+    </div>
+   
+    <div class="input-group">
+      <input type="text" name="nombre" id="nombre" disabled>
+      <label for="nombre">Teléfono</label>
+    </div>
+   
+    <div class="input-group">
+      <input type="text" name="nombre" id="nombre" disabled>
+      <label for="nombre">Género</label>
+    </div>
+  </div>';
+  echo'<h1>Historial de Citas</h1>
 
+    <section>
+      <h2>Historial de citas</h2>
+      <table>
+        <tr>
+          <th>Fecha</th>
+          <th>Notas</th>
+          <th>Estado</th>
+          <th>Enlace</th>
+        </tr>
+      </table>
+    </section>
 
+    <section>
+      <h2>Historial de compras</h2>
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Fecha</th>
+          <th>Cantidad</th>
+          <th>Enlace</th>
+        </tr>
+      </table>
+    </section>';
 
-
-
-     }?>
-
-  <div class="verPerfil">
+     }else{
+      echo '<div class="verPerfil">
     <h2>Nombre del Usuario</h2>
 
     <div class="input-group">
@@ -42,15 +87,12 @@
       <input type="text" name="nombre" id="nombre" required>
       <label for="nombre">Género</label>
     </div>
-    
-  </div>
+  </div>';
+     }?>
 
 </body>
 </html>
-
-
 <style>
-
     .verPerfil {
       width: 50%;
       height: 50%;

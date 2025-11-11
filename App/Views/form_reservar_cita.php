@@ -6,35 +6,46 @@
     <title>Reservar una Cita</title>
     <link rel="stylesheet" href="../../CSS/login.css">
     <link rel="stylesheet" href="../../CSS/inputs.css">
+    <link rel="stylesheet" href="../Components/Header/style.css">
 </head>
 <body>
-     <?php include '../../Components/Header/header_productos_gestion.php'; ?>
+     <?php include '../../Components/Header/header_servicios.php'; ?>
   <main>
     <div class="container">
       <form id="login-form" action="../Drivers/reservar_citas.php" method="POST">
+            
             <div class="input-group">
                 <input type="text" name="motivo" id="nombre" required>
-                <label for="nombre">Motivo</label> <br>
+                <label for="motivo">Motivo</label> <br>
             </div>
+            
             <div class="input-group">
                 <input type="text" name="fecha" id="nombre" required>
-                <label for="nombre">Fecha</label> <br>
+                <label for="fecha">Fecha</label> <br>
             </div>
+            
             <div class="input-group">
-                <select name="tipo">
-                    <option value="0">Admin</option>
-                    <option value="1">Encargado(a)</option>
-                    <option value="2">Secretario(a)</option>
+                <label for="">Hora</label>
+                <select name="hora">
+                    <option value="">Seleccione una opción</option>
+                    <?php
+                        foreach($resultado as $fila){
+                    ?>
+                        <option value="<?=$fila['id']?>"><?=$fila['nombre']?></option>
+                        
+                    <?php
+                        }
+                    ?>
                 </select>
-                
             </div>
+            
             <div class="input-group">
                 <input type="text" name="idpaciente" id="nombre" required>
                 <label for="nombre">Tipo de Perfil</label> <br>
             </div>
 
             <button type="submit">Reservar Cita</button>
-            <button onclick="location.href='../../App/Views/gestion_categorias.php'">Regresar</button>
+            <button onclick="location.href='../../servicios.php'">Regresar</button>
       </form>
     </div>
   </main>
