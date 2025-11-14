@@ -23,6 +23,12 @@
             return $respuesta;
         }
 
+        function consultar($id){
+            $consulta = "SELECT p.*, c.nombre AS categoria FROM producto p INNER JOIN categoria c ON p.fk_categoria = c.id WHERE p.id = '{$id}'";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
+
         function deshabilitar($id){
             $consulta = "UPDATE producto SET estatus = 0 WHERE id = '{$id}'";
             $respuesta = $this->conexion->query($consulta);
@@ -33,11 +39,12 @@
             $respuesta = $this->conexion->query($consulta);
         }
 
-        function actualizar($id, $nombre){
-            $consulta = "UPDATE categoria SET nombre = '{$nombre}' WHERE id = '{$id}'";
+        function actualizar($id, $nombre, $marca, $descripcion, $categoria, $precio, $stock, $fotoFinal){
+            $consulta = "UPDATE producto SET nombre = '{$nombre}', marca = '{$marca}', descripcion = '{$descripcion}', fk_categoria = '{$categoria}', precio = '{$precio}', imagen_principal = '{$fotoFinal}', stock = '{$stock}' WHERE id = '{$id}'";
             $respuesta = $this->conexion->query($consulta);
             return $respuesta;
         }
+
 
         
     }
