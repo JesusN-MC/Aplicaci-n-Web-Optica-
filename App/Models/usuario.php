@@ -29,5 +29,17 @@
                 return null; // no encontrado
             }
         }
+
+        function buscarPorId($id){
+            $consulta = "SELECT * FROM usuario WHERE id='{$id}'";
+		    $respuesta = $this->conexion->query($consulta);
+		    return $respuesta;
+        }
+
+        function actualizar($nombre, $apellido, $fnac, $genero, $telefono, $correo, $pass, $id){
+            $consulta = "UPDATE producto SET nombre='{$nombre}', apellido='{$apellido}', fnac='{$fnac}', genero='{$genero}', telefono='{$telefono}', correo='{$correo}', pass='{$pass}' WHERE id='{$id}' ";
+		    $respuesta = $this->conexion->query($consulta);
+		    return $respuesta;
+        }
     }
 ?>

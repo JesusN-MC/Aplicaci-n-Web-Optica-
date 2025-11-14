@@ -1,5 +1,6 @@
 <?php
     if (session_status() === PHP_SESSION_NONE) {
+            
         session_start();
     }
 ?>
@@ -21,7 +22,7 @@
             <div class="user" id="userMenuToggle">
             <img src="./Components/Header/user-solid.svg" alt="usuario" class="icon-user">
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="./App/Views/editar_usuario.php">Editar Perfil</a>
+                    <a href="./App/Views/editar_usuario.php?usuario<??>">Editar Perfil</a>
                     <a href="./App/Drivers/logout.php">Cerrar Sesion</a>
                 </div>
             </div>

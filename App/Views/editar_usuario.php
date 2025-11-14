@@ -14,88 +14,76 @@
 <body>
     
     <?php include '../../Components/Header/header_servicios.php'; ?>
-    <?php if($_SESSION['usuario_rol']=='admin'){
+    <?php 
+      if($_SESSION['usuario_rol']=='admin'){
+        // VISTA PARA EL ADMIN
+    }else{
+      $id = $_GET['id'];
+      include('../Models/usuario.php');
+      $clase = new Usuario();
+      $respuesta = $clase->buscarPorId($id);
+      $datos = mysqli_fetch_assoc($respuesta);
+   
       echo '<div class="verPerfil">
     <h2>Nombre del Usuario</h2>
-
+    <form action="../Drivers/actualizar_usuario.php" method="POST">
+    
     <div class="input-group">
-      <input type="text" name="nombre" id="nombre" disabled>
+      <input type="hidden" name="id" id="nombre" value="'.$datos["id"].'">
+    </div>
+    
+    <div class="input-group">
+      <input type="text" name="nombre" id="nombre" value="'.$datos["nombre"].'" required>
       <label for="nombre">Nombres</label>
     </div>
-   
+    
     <div class="input-group">
-      <input type="text" name="nombre" id="nombre" disabled>
+      <input type="text" name="apellido" id="nombre" value="'.$datos["apellido"].'" required>
+                                                      
+      <label for="nombre">Apellidos</label>
+    </div>
+
+     <div class="date-placeholder">
+          <input type="date" id="birthDate" name="fnac" value="'.$datos["fnac"].'" required>
+          <label for="birthDate">Fecha de nacimiento</label>
+        </div>
+      
+    <div class="select-group">
+          <select name="genero">
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+          </select>
+          <label>Seleccione género (opcional)</label>
+        </div>
+
+    <div class="input-group">
+      <input type="text" name="telefono" id="nombre" value="'.$datos["telefono"].'" required>
+      <label for="nombre">Teléfono</label>
+    </div>
+      
+    <div class="input-group">
+      <input type="text" name="correo" id="nombre" value="'.$datos["correo"].'" required>
       <label for="nombre">Correo</label>
     </div>
    
     <div class="input-group">
-      <input type="text" name="nombre" id="nombre" disabled>
-      <label for="nombre">Teléfono</label>
+      <input type="text" name="pass" id="nombre" value="'.$datos["pass"].'" required>
+      <label for="nombre">Contraseña</label>
     </div>
    
-    <div class="input-group">
-      <input type="text" name="nombre" id="nombre" disabled>
-      <label for="nombre">Género</label>
-    </div>
+    <button type="submit">Guardar</button>
+    </form>
   </div>';
-  echo'<h1>Historial de Citas</h1>
-
-    <section>
-      <h2>Historial de citas</h2>
-      <table>
-        <tr>
-          <th>Fecha</th>
-          <th>Notas</th>
-          <th>Estado</th>
-          <th>Enlace</th>
-        </tr>
-      </table>
-    </section>
-
-    <section>
-      <h2>Historial de compras</h2>
-      <table>
-        <tr>
-          <th>Producto</th>
-          <th>Fecha</th>
-          <th>Cantidad</th>
-          <th>Enlace</th>
-        </tr>
-      </table>
-    </section>';
-
-     }else{
-      echo '<div class="verPerfil">
-    <h2>Nombre del Usuario</h2>
-
-    <div class="input-group">
-      <input type="text" name="nombre" id="nombre" required>
-      <label for="nombre">Nombres</label>
-    </div>
-   
-    <div class="input-group">
-      <input type="text" name="nombre" id="nombre" required>
-      <label for="nombre">Correo</label>
-    </div>
-   
-    <div class="input-group">
-      <input type="text" name="nombre" id="nombre" required>
-      <label for="nombre">Teléfono</label>
-    </div>
-   
-    <div class="input-group">
-      <input type="text" name="nombre" id="nombre" required>
-      <label for="nombre">Género</label>
-    </div>
-  </div>';
-     }?>
+    }
+    ?>
 
 </body>
 </html>
 <style>
     .verPerfil {
-      width: 50%;
-      height: 50%;
+      width: 80%;
+      height: 80%;
       margin: 150px auto;
       background: white;
       border-radius: 15px;
