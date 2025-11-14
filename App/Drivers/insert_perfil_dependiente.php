@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../CSS/gestion_result.css">
+</head>
+<body>
+     <?php include '../../Components/Header/header_login.php'; ?>
+  <main>
+    <div class="container">
+
 <?php
 session_start(); 
 require_once('../Models/perfil_dependiente.php');
@@ -35,3 +48,5 @@ if ($perfil->guardar($nombres, $apellidos, $parentesco, $fk_usuario)) {
           </div>";
 }
 ?>
+</body>
+</html>
