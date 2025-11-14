@@ -1,0 +1,22 @@
+
+.barra {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;        
+    margin-top: 60px;            
+}
+
+.lado-izq h2 {
+    margin: 0;                 
+}
+
+
+.barra .btn-verde {
+    padding: 8px 16px;            
+    font-size: 14px;
+    background-color: #4CAF50;  
+    color: white;                
+    border: none;                  
+    border-radius: 4px;                  
+}
+
