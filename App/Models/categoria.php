@@ -17,6 +17,12 @@
             return $respuesta;
         }
 
+        function consultar($id){
+            $consulta = "SELECT * FROM categoria WHERE id = '{$id}'";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
+
         function activas(){
             $consulta = "SELECT * FROM categoria WHERE estatus = 1";
             $respuesta = $this->conexion->query($consulta);

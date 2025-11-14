@@ -10,6 +10,10 @@
             $respuesta = $this->conexion->query($consulta);
             return $respuesta;
         }
+        public function buscarPorId($id) {
+            return $this->conexion->query("SELECT * FROM categorias WHERE id = $id")->fetch_assoc();
+        }
+
         
     }
 ?>

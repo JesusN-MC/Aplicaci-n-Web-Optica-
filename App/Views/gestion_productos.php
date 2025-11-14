@@ -53,7 +53,7 @@
                         
                         echo '<td>Activo</td>';
                         echo    '<td class="actions">
-                                    <button class="edit" onclick="location.href=\'../../App/Views/actualizar_categoria.php?categoria='.$fila['id'].'\'">Editar</button>
+                                    <button class="edit" onclick="location.href=\'../../App/Views/actualizar_producto.php?producto='.$fila['id'].'\'">Editar</button>
                                     <button class="delete" onclick="location.href=\'../../App/Drivers/deshabilitar_producto.php?producto='.$fila['id'].'\'">Desactivar</button>
                                 </td>';
                         echo '</tr>';
@@ -67,7 +67,7 @@
                         
                         echo '<td>Inactivo</td>';
                         echo    '<td class="actions">
-                                    <button class="edit" onclick="location.href="../../App/Drivers/edit_categoria.php?id='.$fila['id'].'" ">Editar</button>
+                                   <button class="edit" onclick="location.href=\'../../App/Views/actualizar_producto.php?producto='.$fila['id'].'\'">Editar</button>
                                     <button class="btn-green min" onclick="location.href=\'../../App/Drivers/habilitar_producto.php?producto='.$fila['id'].'\'"">Habilitar</button>
                                 </td>';
                         echo '</tr>';
