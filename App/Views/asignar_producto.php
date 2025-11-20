@@ -1,33 +1,91 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asignar Producto</title>
+
     <link rel="stylesheet" href="../../CSS/login.css" />
     <link rel="stylesheet" href="../../CSS/inputs.css" />
+
+    <style>
+        /* MODAL */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-actions button {
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        #cancelBtn {
+            background: #c34c4cff;
+            margin-right: 10px;
+        }
+
+        #confirmBtn {
+            background: #28a745;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .assign-btn {
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
 
-  <?php include '../../Components/Header/header_productos.php'; 
-  
-        $id = $_GET['producto'];
-        include '../Models/producto.php';
-        $clase = new Producto();
-        $res = $clase->consultar($id);
-        $datos = mysqli_fetch_assoc($res);
+<?php 
+    include '../../Components/Header/header_productos.php'; 
+    
+    $idProducto = $_GET['producto'];
 
-        $imagen = "../../Assets/" . $datos['imagen_principal'];
-  ?>
+    include '../Models/producto.php';
+    $clase = new Producto();
+    $res = $clase->consultar($idProducto);
+    $datos = mysqli_fetch_assoc($res); 
+
+    $imagen = "../../Assets/" . $datos['imagen_principal'];
+?>
 
     <div class="main-wrapper">
         <div class="card">
+
+            <!-- PRODUCTO -->
             <section class="product-row">
                 <div class="img-box">
                     <img src="<?php echo $imagen ?>" alt="Imagen del producto">
                 </div>
 
                 <div class="product-info">
+
                     <div class="info-item">
                         <label>Nombre</label>
                         <div><?php echo $datos['nombre'] ?></div>
@@ -46,21 +104,19 @@
                     <div class="info-item">
                         <label>Categoría</label>
                         <div>
-                            <?php
-                                if (!isset($filaCat)) {
-                                    include '../Models/categoria.php';
-                                    $cat = new Categoria();
-                                    $r = $cat->consultar($datos['fk_categoria']);
-                                    $filaCat = mysqli_fetch_assoc($r);
-                                }
-                                echo $filaCat['nombre'];
-                            ?>
+                        <?php
+                            include '../Models/categoria.php';
+                            $cat = new Categoria();
+                            $r = $cat->consultar($datos['fk_categoria']);
+                            $filaCat = mysqli_fetch_assoc($r);
+                            echo $filaCat['nombre'];
+                        ?>
                         </div>
                     </div>
+
                 </div>
             </section>
 
-            
             <section class="assign-area">
                 <h3>Asignar a Usuario</h3>
 
@@ -70,30 +126,85 @@
 
                 <div class="user-list" id="userList">
 
-                    <div class="user-item">
-                        <span>Juan Pérez</span>
-                        <button class="assign-btn">Asignar</button>
-                    </div>
-                    <div class="user-item">
-                        <span>Ana López</span>
-                        <button class="assign-btn">Asignar</button>
-                    </div>
+                    <?php 
+                        include '../Models/usuario.php';
+                        $claseU = new Usuario();
+                        $resU = $claseU->mostrar();
+
+                        foreach($resU as $fila){
+                            echo '
+                            <div class="user-item">
+                                <span>'.$fila['nombre'].' '.$fila['apellidos'].'</span>
+                                <button class="assign-btn" data-userid="'.$fila['id'].'">Asignar</button>
+                            </div>';
+                        }
+                    ?>
+
                 </div>
             </section>
+
         </div>
     </div>
+
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <h3>¿Asignar este producto?</h3>
+            <p id="userName"></p>
+
+            <div class="modal-actions">
+                <button id="cancelBtn">Cancelar</button>
+                <button id="confirmBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
 <script>
-    // Buscador simple en el DOM (cliente) para ir probando vista
+    // SCRIPT DE BUSQUEDA
+    function quitarAcentos(str) {
+        return str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase();
+    }
+
     document.getElementById('userSearch').addEventListener('input', function(e){
-        const q = e.target.value.toLowerCase();
-        document.querySelectorAll('#userList .user-item').forEach(item=>{
-            const name = item.querySelector('span').innerText.toLowerCase();
+        const q = quitarAcentos(e.target.value);
+
+        document.querySelectorAll('#userList .user-item').forEach(item => {
+            const name = quitarAcentos(item.querySelector('span').innerText);
             item.style.display = name.includes(q) ? 'flex' : 'none';
         });
     });
+
+    // ABRIR MODAL
+    let selectedUser = "";
+    let selectedUserId = "";
+
+    document.querySelectorAll(".assign-btn").forEach(btn => {
+        btn.addEventListener("click", function(e){
+            e.stopPropagation();
+
+            selectedUser = this.parentElement.querySelector("span").innerText;
+            selectedUserId = this.dataset.userid;
+
+            document.getElementById("userName").innerText = selectedUser;
+
+            document.getElementById("confirmModal").style.display = "flex";
+        });
+    });
+
+    document.getElementById("cancelBtn").onclick = function () {
+        document.getElementById("confirmModal").style.display = "none";
+    };
+
+    document.getElementById("confirmBtn").onclick = function () {
+        window.location = "resultado_asignacion.php?usuario=" + selectedUserId + "&producto=<?php echo $idProducto?>" + "&total=<?php echo $datos['precio']?>";
+    };
 </script>
+
 </body>
 </html>
+
 <style>
         body {
             background: #f5f7fa;
@@ -254,4 +365,6 @@
             align-items: flex-start;
             margin-bottom: 25px;
         }
+
+        
   </style>

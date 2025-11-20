@@ -186,7 +186,7 @@
             </div>
         </div>
 
-        <a class="btn-back" href="../../index.php">Regresar</a>
+        <a class="btn-back" onclick="history.back()">Regresar</a>
 
     </div>
 

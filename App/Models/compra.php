@@ -6,9 +6,8 @@ class Compra {
     }
 
     // para guaardar una compra
-    function guardar($id_producto, $fk_usuario, $cantidad, $fecha) {
-        $consulta = "INSERT INTO compra (id_producto, fk_usuario, cantidad, fecha) 
-                     VALUES ({$id_producto}, {$fk_usuario}, {$cantidad}, '{$fecha}')";
+    function guardar($total, $id_producto, $fk_usuario) {
+        $consulta = "INSERT INTO compra (id, total, fecha, hora, fk_usuario, fk_producto) VALUES (NULL, '{$total}', NOW(), CURTIME(), '{$fk_usuario}', '{$id_producto}')";
         $respuesta = $this->conexion->query($consulta);
         return $respuesta;
     }
