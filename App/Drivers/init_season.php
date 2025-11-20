@@ -14,6 +14,11 @@
             $_SESSION['usuario_nombre'] = $usuario['nombre'];
             $_SESSION['usuario_apellido'] = $usuario['apellidos'];
             $_SESSION['usuario_rol'] = $usuario['rol'];
+            $_SESSION['usuario_correo'] = $usuario['correo'];
+            $_SESSION['usuario_pass'] = $usuario['contraseña'];
+            $_SESSION['usuario_fnac'] = $usuario['fecha_nacimiento'];
+            $_SESSION['usuario_genero'] = $usuario['genero'];
+            $_SESSION['usuario_telefono'] = $usuario['telefono'];
 
             header("Location: ../../index.php");
             exit();

@@ -19,7 +19,7 @@
         <div class="user" id="userMenuToggle">
         <img src="../../Components/Header/user-solid.svg" alt="usuario" class="icon-user">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="../../App/Views/editar_usuario.php">Editar</a>
+                <a href="../../App/Views/editar_usuario.php?idusuario=<?php echo $_SESSION['usuario_id']; ?>">Editar</a>
                 <a href="../../App/Drivers/logout.php">Cerrar Sesión</a>
             </div>
         </div>
