@@ -36,8 +36,9 @@
 		    return $respuesta;
         }
 
-        function actualizar($nombre, $apellido, $fnac, $genero, $telefono, $correo, $pass, $id){
-            $consulta = "UPDATE producto SET nombre='{$nombre}', apellido='{$apellido}', fnac='{$fnac}', genero='{$genero}', telefono='{$telefono}', correo='{$correo}', pass='{$pass}' WHERE id='{$id}' ";
+        function actualizar($nombre, $apellido, $fnac, $genero, $telefono, $correo, $pass){
+            $id = $_SESSION['usuario_id'];
+            $consulta = "UPDATE usuario SET nombre='{$nombre}', apellidos='{$apellido}', fecha_nacimiento='{$fnac}', genero='{$genero}', telefono='{$telefono}', correo='{$correo}', contraseña='{$pass}' WHERE id='{$id}' ";
 		    $respuesta = $this->conexion->query($consulta);
 		    return $respuesta;
         }

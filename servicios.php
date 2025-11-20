@@ -13,9 +13,11 @@
     <title>Optica - Servicios</title>
     <link rel="stylesheet" href="./Components/Header/style.css">
     <link rel="stylesheet" href="./CSS/productos.css">
+    
 </head>
 <body>
     <?php include './Components/Header/header_servicios_home.php'; ?>
+    <?php include 'barraServicios.php'?>
     
     <main>
     <div class="product-card">

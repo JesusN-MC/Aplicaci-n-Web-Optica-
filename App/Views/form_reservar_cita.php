@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="../../CSS/login.css">
     <link rel="stylesheet" href="../../CSS/inputs.css">
     <link rel="stylesheet" href="../Components/Header/style.css">
+    <link rel="stylesheet" href="../../Components/Productos_Filtro/style.css">
+
 </head>
 <body>
      <?php include '../../Components/Header/header_servicios.php'; ?>
+     <?php include '../../barraServicios.php'?>
+     
   <main>
     <div class="container">
       <form id="login-form" action="../Drivers/reservar_citas.php" method="POST">
