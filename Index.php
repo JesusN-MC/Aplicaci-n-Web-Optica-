@@ -82,7 +82,7 @@
 
                     echo "</div>";
                     echo "</section>";
-                }
+                } 
             }
         ?>
     </main>
