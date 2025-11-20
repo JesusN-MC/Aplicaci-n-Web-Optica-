@@ -53,6 +53,7 @@
                         
                         echo '<td>Activo</td>';
                         echo    '<td class="actions">
+                                    <button class="asig" onclick="location.href=\'../../App/Views/asignar_producto.php?producto='.$fila['id'].'\'">Asignar</button>
                                     <button class="edit" onclick="location.href=\'../../App/Views/actualizar_producto.php?producto='.$fila['id'].'\'">Editar</button>
                                     <button class="delete" onclick="location.href=\'../../App/Drivers/deshabilitar_producto.php?producto='.$fila['id'].'\'">Desactivar</button>
                                 </td>';
@@ -67,7 +68,8 @@
                         
                         echo '<td>Inactivo</td>';
                         echo    '<td class="actions">
-                                   <button class="edit" onclick="location.href=\'../../App/Views/actualizar_producto.php?producto='.$fila['id'].'\'">Editar</button>
+                                    <button class="asig" onclick="location.href=\'../../App/Views/asignar_producto.php?producto='.$fila['id'].'\'">Asignar</button>
+                                    <button class="edit" onclick="location.href=\'../../App/Views/actualizar_producto.php?producto='.$fila['id'].'\'">Editar</button>
                                     <button class="btn-green min" onclick="location.href=\'../../App/Drivers/habilitar_producto.php?producto='.$fila['id'].'\'"">Habilitar</button>
                                 </td>';
                         echo '</tr>';
@@ -79,3 +81,9 @@
     </table>
 </body>
 </html>
+<style>
+    .asig{
+        background-color: #c1a383;
+        color: white;
+    }
+</style>
