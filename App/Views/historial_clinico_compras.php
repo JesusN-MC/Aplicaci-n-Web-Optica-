@@ -2,6 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+include '../Drivers/conexion.php';
+$conexion = new Conexion();
+
+$fk_usuario = $_SESSION['usuario_id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,32 +27,38 @@ if (session_status() === PHP_SESSION_NONE) {
 <main>
     <h1>Historial clínico y de compras</h1>
 
-    <!-- Historial de Citas -->
     <section>
         <h2>Historial de citas</h2>
         <table>
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Notas</th>
+                    <th>Nota</th>
                     <th>Estado</th>
                     <th>Enlace</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                include '../Models/cita.php';
+                $citasSql = "
+                    SELECT cita.id, cita.fecha, cita.estatus, nota.contenido AS nota
+                    FROM cita
+                    LEFT JOIN nota ON nota.fk_cita = cita.id
+                    WHERE cita.idpaciente = $fk_usuario
+                ";
 
-                $cita = new Cita();
-                $fk_usuario = $_SESSION['usuario_id'];
-                $resultado = $cita->mostrar(); // Se muestra todo y se filtra por usuario si quieres agregar esa lógica más adelante
+                $resultadoCitas = $conexion->query($citasSql);
 
-                if ($resultado) {
-                    while ($row = $resultado->fetch_assoc()) {
+                if ($resultadoCitas && $resultadoCitas->num_rows > 0) {
+                    while ($row = $resultadoCitas->fetch_assoc()) {
+
+                        $estado = ($row['estatus'] == 1) ? 'Activa' : 'Finalizada';
+                        $nota = $row['nota'] ? $row['nota'] : 'Sin nota';
+
                         echo '<tr>';
                         echo '<td>' . $row['fecha'] . '</td>';
-                        echo '<td>' . $row['notas'] . '</td>';
-                        echo '<td>' . ($row['estatus'] == 1 ? 'Activa' : 'Finalizada') . '</td>';
+                        echo '<td>' . $nota . '</td>';
+                        echo '<td>' . $estado . '</td>';
                         echo '<td><a href="detalle_cita.php?id=' . $row['id'] . '">Ver</a></td>';
                         echo '</tr>';
                     }
@@ -59,7 +70,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </table>
     </section>
 
-    <!-- Historial de Compras -->
     <section>
         <h2>Historial de compras</h2>
         <table>
@@ -67,24 +77,27 @@ if (session_status() === PHP_SESSION_NONE) {
                 <tr>
                     <th>Producto</th>
                     <th>Fecha</th>
-                    <th>Cantidad</th>
+                    <th>Total</th>
                     <th>Enlace</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                include '../Models/compra.php';
+                $comprasSql = "
+                    SELECT compra.id, producto.nombre AS producto, compra.fecha, compra.total
+                    FROM compra
+                    INNER JOIN producto ON compra.fk_producto = producto.id
+                    WHERE compra.fk_usuario = $fk_usuario
+                 ";
 
-                $compra = new Compra();
-                $fk_usuario = $_SESSION['usuario_id'];
-                $resultado = $compra->mostrar($fk_usuario);
+                $resultadoCompras = $conexion->query($comprasSql);
 
-                if ($resultado) {
-                    while ($row = $resultado->fetch_assoc()) {
+                if ($resultadoCompras && $resultadoCompras->num_rows > 0) {
+                    while ($row = $resultadoCompras->fetch_assoc()) {
                         echo '<tr>';
                         echo '<td>' . $row['producto'] . '</td>';
                         echo '<td>' . $row['fecha'] . '</td>';
-                        echo '<td>' . $row['cantidad'] . '</td>';
+                        echo '<td>$' . $row['total'] . '</td>';
                         echo '<td><a href="detalle_compra.php?id=' . $row['id'] . '">Ver</a></td>';
                         echo '</tr>';
                     }
@@ -95,6 +108,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </tbody>
         </table>
     </section>
+
 </main>
 
 </body>
