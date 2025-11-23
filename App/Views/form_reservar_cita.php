@@ -29,9 +29,9 @@
             </div>
             
             <div class="input-group">
-                <label for="">Hora</label>
+                <!-- <label for="">Hora</label> -->
                 <select name="hora">
-                    <option value="">Seleccione una opción</option>
+                    <option value="">Seleccione una hora</option>
                     <?php
                         foreach($resultado as $fila){
                     ?>
@@ -44,8 +44,9 @@
             </div>
             
             <div class="input-group">
-                <input type="text" name="idpaciente" id="nombre" required>
-                <label for="nombre">Tipo de Perfil</label> <br>
+                <Select name="idpaciente">
+                    <option value="">Persona</option>
+                </Select>
             </div>
 
             <button type="submit">Reservar Cita</button>
