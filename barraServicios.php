@@ -3,4 +3,10 @@
         <button class="btn-green">Citas</button>
         <button class="btn-green">Perfiles</button>
         <button class="btn-green">Historial</button>
-    </section>
+</section>
+<style>
+    .filter-bar{
+        justify-content: center;
+        gap: 10px;
+    }
+</style>
