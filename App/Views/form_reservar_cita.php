@@ -1,3 +1,20 @@
+<?php
+session_start();
+$idUsuario = $_SESSION['usuario_id'];
+
+require_once('../Drivers/conexion.php');
+$conexion = new Conexion();
+
+/* 1. Titular */
+$consultaU = "SELECT id, nombre, apellidos FROM usuario WHERE id = $idUsuario";
+$respuestaU = $conexion->query($consultaU);
+$usuario = $respuestaU->fetch_assoc();
+
+/* 2. Dependientes */
+$constulaP = "SELECT id, nombres, apellidos FROM perfil WHERE fk_usuario = $idUsuario";
+$respuestaP = $conexion->query($constulaP);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,30 +39,39 @@
                 <input type="text" name="motivo" id="nombre" required>
                 <label for="motivo">Motivo</label> <br>
             </div>
-            
+
             <div class="input-group">
-                <input type="text" name="fecha" id="nombre" required>
-                <label for="fecha">Fecha</label> <br>
-            </div>
-            
-            <div class="input-group">
-                <!-- <label for="">Hora</label> -->
-                <select name="hora">
-                    <option value="">Seleccione una hora</option>
-                    <?php
-                        foreach($resultado as $fila){
-                    ?>
-                        <option value="<?=$fila['id']?>"><?=$fila['nombre']?></option>
-                        
-                    <?php
-                        }
-                    ?>
+                <select name="tipo">
+                    <option value="">Seleccione tipo de cita</option>
+                        <option value="r">Revisión</option> 
+                        <option value="c">Consulta</option> 
                 </select>
             </div>
             
             <div class="input-group">
-                <Select name="idpaciente">
-                    <option value="">Persona</option>
+                <input type="date" name="fecha" id="nombre" required>
+                <label for="fecha">Fecha</label> <br>
+            </div>
+            
+            <div class="input-group">
+                <select name="hora">
+                    <option value="">Seleccione una hora</option>
+                         <option value="08">08:00</option> 
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <Select name="idpaciente" required>
+                    <option value="">Seleccione al paciente</option>
+                <option value="<?= $usuario['id'] ?>">
+                    <?= $usuario['nombre'] . " " . $usuario['apellidos'] ?>
+                </option>
+
+                <?php while($fila = $respuestaP->fetch_assoc()) { ?>
+                    <option value="<?= $fila['id'] ?>">
+                        <?= $fila['nombres'] . " " . $fila['apellidos'] ?>
+                    </option>
+                <?php } ?>
                 </Select>
             </div>
 
