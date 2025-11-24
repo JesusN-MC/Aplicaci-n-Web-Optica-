@@ -93,6 +93,7 @@
     $idProducto = $_GET['producto'];
     $idUsuario = $_GET['usuario'];
     $total = $_GET['total'];
+    $stock = $_GET['stock'] - 1;
 
     include '../Models/compra.php';
     $compra = new Compra();
@@ -103,6 +104,7 @@
     $p = new Producto();
     $rp = $p->consultar($idProducto);
     $producto = mysqli_fetch_assoc($rp);
+    $p->descontar($idProducto, $stock);
 
     //datos del usuario
     include '../Models/usuario.php';

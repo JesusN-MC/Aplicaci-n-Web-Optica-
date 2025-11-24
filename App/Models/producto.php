@@ -45,7 +45,12 @@
             return $respuesta;
         }
 
+        function descontar($id, $stock){
+            $consulta = "UPDATE producto SET stock = '{$stock}' WHERE id = '{$id}'";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
 
-        
+
     }
 ?>

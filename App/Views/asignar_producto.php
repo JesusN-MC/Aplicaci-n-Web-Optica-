@@ -198,7 +198,7 @@
     };
 
     document.getElementById("confirmBtn").onclick = function () {
-        window.location = "resultado_asignacion.php?usuario=" + selectedUserId + "&producto=<?php echo $idProducto?>" + "&total=<?php echo $datos['precio']?>";
+        window.location = "resultado_asignacion.php?usuario=" + selectedUserId + "&producto=<?php echo $idProducto?>" + "&total=<?php echo $datos['precio']?>"+ "&stock=<?php echo $datos['stock']?>";
     };
 </script>
 
