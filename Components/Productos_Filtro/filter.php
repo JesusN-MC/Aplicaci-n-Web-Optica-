@@ -33,7 +33,7 @@ $self = htmlspecialchars($_SERVER['PHP_SELF']);
             }
             ?>
         </select>
-
+            
         <button class="btn-green" type="submit">Filtrar</button>
     </form>
 

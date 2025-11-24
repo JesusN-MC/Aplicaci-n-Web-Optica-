@@ -20,6 +20,7 @@
             <h2>Gestion de Productos</h2>
         </div>
         <div class="filter-right">
+            <button class="btn-green" onclick="location.href='../../App/Views/historial_producto.php'">Historial de Productos</button>
             <button class="btn-green" onclick="location.href='../../App/Views/crear_producto.php'">Crear Producto</button>
         </div>
     </section>
