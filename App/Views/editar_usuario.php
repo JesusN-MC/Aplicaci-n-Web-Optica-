@@ -20,12 +20,9 @@
 <body>
     <?php include '../../Components/Header/header_servicios.php'; ?>
     <?php 
-      if($_SESSION['usuario_rol']=='admin'){
-        // VISTA PARA EL ADMIN
-    }else{
-   
+
       echo '<div class="verPerfil">
-    <h2>Nombre del Usuario</h2>
+    <h2>Editar Usuario</h2>
     <form action="../Drivers/actualizar_usuario.php" method="POST">
     
     <div class="input-group">
@@ -58,7 +55,7 @@
         </div>
 
     <div class="input-group">
-      <input type="text" name="telefono" id="telefono" value="'.$_SESSION["usuario_telefono"].'" required>
+      <input type="text" name="telefono" id="telefono" value="'.$_SESSION["usuario_telefono"].'">
       <label for="nombre">Teléfono</label>
     </div>
       
@@ -72,17 +69,22 @@
       <label for="nombre">Contraseña</label>
     </div>
    
-    <button type="submit">Guardar</button>
+    <button class="medium" type="submit">Guardar</button>
     </form>
   </div>';
-    }
+    
     ?>
 
 </body>
 </html>
 <style>
+    .medium{
+      max-witdh: 100px;
+    }
+
     .verPerfil {
       width: 80%;
+      max-width: 700px;
       height: 80%;
       margin: 150px auto;
       background: white;

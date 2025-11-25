@@ -25,7 +25,7 @@ if ($resultado) {
     $_SESSION['usuario_telefono'] = $telefono;
     $_SESSION['usuario_correo'] = $correo;
     $_SESSION['usuario_pass'] = $pass;
-
+    header("Location: ../Views/editar_usuario.php");
     
     
     #echo "Datos actualizados con éxito.";
