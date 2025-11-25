@@ -5,7 +5,8 @@
             $this->conexion = new Conexion();
         }
     
-        function reservar_cita($motivo, $apellido, $fnac, $genero, $telefono, $correo, $pass){
+        function reservar_cita($motivo, $fecha, $hora, $idpaciente, $tipo){
+            $estatus= 'A';
             $consulta = "INSERT INTO cita (id, motivo, fecha, hora, estatus, idpaciente, tipo) VALUES (null, '{$motivo}', '{$fecha}', '{$hora}', '{$estatus}', '{$idpaciente}', '{$tipo}')";
             $respuesta = $this->conexion->query($consulta);
             return $respuesta;
