@@ -64,7 +64,7 @@
             </div>
             
             <button style="margin-top: 20px" type="submit">Registrar Producto</button>
-            <button onclick="location.href='../../App/Views/gestion_categorias.php'">Regresar</button>
+            <button onclick="location.href='../../App/Views/gestion_productos.php'">Regresar</button>
       </form>
     </div>
   </main>

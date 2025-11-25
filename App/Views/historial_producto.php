@@ -43,7 +43,7 @@
 
                 
                 foreach($resultado as $fila){
-                    echo '<tr onclick="window.location=\'visualizar_producto.php?producto='.$fila['id'].'\'">';
+                    echo '<tr onclick="window.location=\'visualizar_compra.php?compra='.$fila['id'].'\'">';
                     
                     echo '<td class="center">'.$fila['id'].'</td>';
                     echo '<td>'.$fila['producto'].'</td>';
