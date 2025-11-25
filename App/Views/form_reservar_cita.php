@@ -5,14 +5,62 @@ $idUsuario = $_SESSION['usuario_id'];
 require_once('../Drivers/conexion.php');
 $conexion = new Conexion();
 
-/* 1. Titular */
 $consultaU = "SELECT id, nombre, apellidos FROM usuario WHERE id = $idUsuario";
 $respuestaU = $conexion->query($consultaU);
 $usuario = $respuestaU->fetch_assoc();
 
-/* 2. Dependientes */
 $constulaP = "SELECT id, nombres, apellidos FROM perfil WHERE fk_usuario = $idUsuario";
 $respuestaP = $conexion->query($constulaP);
+
+// horas disponibles
+$horasPosibles = [
+    "09:00", "10:00", "11:00",
+    "12:00", "13:00", "16:00",
+    "17:00", "18:00"
+];
+
+$fechas = [];
+for ($i = 0; $i < 7; $i++) {
+    $fechas[] = date("Y-m-d", strtotime("+$i days"));
+}
+
+$fechasDisponibles = [];
+
+foreach ($fechas as $fecha) {
+
+    // horas ocupadas para esta fecha
+    $consultaH = "SELECT hora FROM cita WHERE fecha = '$fecha'";
+    $respuestaH = $conexion->query($consultaH);
+
+    $horasOcupadas = [];
+    while ($fila = $respuestaH->fetch_assoc()) {
+        $horasOcupadas[] = $fila['hora'];
+    }
+
+    // contar horas libres
+    $horasLibres = array_diff($horasPosibles, $horasOcupadas);
+
+    if (count($horasLibres) > 0) {
+        $fechasDisponibles[] = $fecha;
+    }
+}
+
+$fechaSeleccionada = $_POST['fecha'] ?? ($fechasDisponibles[0] ?? null);
+
+$horasLibres = [];
+
+if ($fechaSeleccionada) {
+    $consultaH2 = "SELECT hora FROM cita WHERE fecha = '$fechaSeleccionada'";
+    $respuestaH2 = $conexion->query($consultaH2);
+
+    $horasOcupadas = [];
+    while ($fila = $respuestaH2->fetch_assoc()) {
+        $horasOcupadas[] = $fila['hora'];
+    }
+
+    $horasLibres = array_diff($horasPosibles, $horasOcupadas);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -48,17 +96,22 @@ $respuestaP = $conexion->query($constulaP);
                 </select>
             </div>
             
-            <div class="input-group">
-                <input type="date" name="fecha" id="nombre" required>
-                <label for="fecha">Fecha</label> <br>
-            </div>
+            <?php
+                echo '<select name="fecha" required onchange="this.form.submit()">';
+                foreach ($fechasDisponibles as $f) {
+                echo "<option value='$f'>$f</option>";
+                }
+                echo '</select>';
+            ?>
             
-            <div class="input-group">
-                <select name="hora">
-                    <option value="">Seleccione una hora</option>
-                         <option value="08">08:00</option> 
-                </select>
-            </div>
+            <?php
+                echo '<select name="hora" required>';
+                echo '<option value= ""> Seleccione una hora</option>';
+                foreach ($horasLibres as $h) {
+                echo "<option value='$h'>$h</option>";
+                }
+                echo '</select>';
+            ?>
             
             <div class="input-group">
                 <Select name="idpaciente" required>
