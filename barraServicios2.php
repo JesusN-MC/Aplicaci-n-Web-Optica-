@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="./Components/Productos_Filtro/style.css">
+<link rel="stylesheet" href="../../Components/Productos_Filtro/style.css">
 <section class="filter-bar">
-        <button onclick="location.href='servicios.php'" class="btn-green">Citas</button>
-        <button onclick="location.href='./App/Views/listar_perfil_dependiente.php'" class="btn-green">Perfiles</button>
+        <button onclick="location.href='../../servicios.php'" class="btn-green">Citas</button>
+        <button onclick="location.href='../../App/Views/listar_perfil_dependiente.php'" class="btn-green">Perfiles</button>
         <button class="btn-green">Historial</button>
 </section>
 <style>
