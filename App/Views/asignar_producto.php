@@ -1,65 +1,3 @@
-<!DOCTYPE html> 
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asignar Producto</title>
-
-    <link rel="stylesheet" href="../../CSS/login.css" />
-    <link rel="stylesheet" href="../../CSS/inputs.css" />
-
-    <style>
-        /* MODAL */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-content {
-            background: #fff;
-            padding: 20px;
-            width: 350px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .modal-actions {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .modal-actions button {
-            padding: 10px 18px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        #cancelBtn {
-            background: #c34c4cff;
-            margin-right: 10px;
-        }
-
-        #confirmBtn {
-            background: #28a745;
-            color: white;
-            margin-left: 10px;
-        }
-
-        .assign-btn {
-            cursor: pointer;
-        }
-    </style>
-</head>
-
 <body>
 
 <?php 
@@ -75,88 +13,113 @@
     $imagen = "../../Assets/" . $datos['imagen_principal'];
 ?>
 
-    <div class="main-wrapper">
-        <div class="card">
+<!-- 🟩 BOTÓN REGRESAR -->
+<div style="
+    margin: 100px 0 0 20px;
+    width: 95%;
+    max-width: 700px;
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+">
+    <button onclick="history.back()" 
+        style="
+            background:#096545;
+            color:white;
+            padding:10px 18px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:600;
+            box-shadow:0 3px 8px rgba(0,0,0,0.18);
+        ">
+        Regresar
+    </button>
+</div>
 
-            <!-- PRODUCTO -->
-            <section class="product-row">
-                <div class="img-box">
-                    <img src="<?php echo $imagen ?>" alt="Imagen del producto">
-                </div>
+<div class="main-wrapper">
+    <div class="card">
 
-                <div class="product-info">
-
-                    <div class="info-item">
-                        <label>Nombre</label>
-                        <div><?php echo $datos['nombre'] ?></div>
-                    </div>
-
-                    <div class="info-item">
-                        <label>Stock</label>
-                        <div><?php echo $datos['stock'] ?></div>
-                    </div>
-
-                    <div class="info-item">
-                        <label>Marca</label>
-                        <div><?php echo $datos['marca'] ?></div>
-                    </div>
-
-                    <div class="info-item">
-                        <label>Categoría</label>
-                        <div>
-                        <?php
-                            include '../Models/categoria.php';
-                            $cat = new Categoria();
-                            $r = $cat->consultar($datos['fk_categoria']);
-                            $filaCat = mysqli_fetch_assoc($r);
-                            echo $filaCat['nombre'];
-                        ?>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section class="assign-area">
-                <h3>Asignar a Usuario</h3>
-
-                <div class="search-box">
-                    <input id="userSearch" type="text" placeholder="Buscar usuario..." />
-                </div>
-
-                <div class="user-list" id="userList">
-
-                    <?php 
-                        include '../Models/usuario.php';
-                        $claseU = new Usuario();
-                        $resU = $claseU->mostrar();
-
-                        foreach($resU as $fila){
-                            echo '
-                            <div class="user-item">
-                                <span>'.$fila['nombre'].' '.$fila['apellidos'].'</span>
-                                <button class="assign-btn" data-userid="'.$fila['id'].'">Asignar</button>
-                            </div>';
-                        }
-                    ?>
-
-                </div>
-            </section>
-
-        </div>
-    </div>
-
-    <div class="modal" id="confirmModal">
-        <div class="modal-content">
-            <h3>¿Asignar este producto?</h3>
-            <p id="userName"></p>
-
-            <div class="modal-actions">
-                <button id="cancelBtn">Cancelar</button>
-                <button id="confirmBtn">Confirmar</button>
+        <!-- PRODUCTO -->
+        <section class="product-row">
+            <div class="img-box">
+                <img src="<?php echo $imagen ?>" alt="Imagen del producto">
             </div>
+
+            <div class="product-info">
+
+                <div class="info-item">
+                    <label>Nombre</label>
+                    <div><?php echo $datos['nombre'] ?></div>
+                </div>
+
+                <div class="info-item">
+                    <label>Stock</label>
+                    <div><?php echo $datos['stock'] ?></div>
+                </div>
+
+                <div class="info-item">
+                    <label>Marca</label>
+                    <div><?php echo $datos['marca'] ?></div>
+                </div>
+
+                <div class="info-item">
+                    <label>Categoría</label>
+                    <div>
+                    <?php
+                        include '../Models/categoria.php';
+                        $cat = new Categoria();
+                        $r = $cat->consultar($datos['fk_categoria']);
+                        $filaCat = mysqli_fetch_assoc($r);
+                        echo $filaCat['nombre'];
+                    ?>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="assign-area">
+            <h3>Asignar a Usuario</h3>
+
+            <div class="search-box">
+                <input id="userSearch" type="text" placeholder="Buscar usuario..." />
+            </div>
+
+            <div class="user-list" id="userList">
+
+                <?php 
+                    include '../Models/usuario.php';
+                    $claseU = new Usuario();
+                    $resU = $claseU->mostrar();
+
+                    foreach($resU as $fila){
+                        echo '
+                        <div class="user-item">
+                            <span>'.$fila['nombre'].' '.$fila['apellidos'].'</span>
+                            <button class="assign-btn" data-userid="'.$fila['id'].'">Asignar</button>
+                        </div>';
+                    }
+                ?>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<div class="modal" id="confirmModal">
+    <div class="modal-content">
+        <h3>¿Asignar este producto?</h3>
+        <p id="userName"></p>
+
+        <div class="modal-actions">
+            <button id="cancelBtn">Cancelar</button>
+            <button id="confirmBtn">Confirmar</button>
         </div>
     </div>
+</div>
 
 <script>
     // SCRIPT DE BUSQUEDA
@@ -216,7 +179,7 @@
         .main-wrapper {
             width: 95%;
             max-width: 700px;
-            margin-top: 70px;
+            margin-top: 5px;
             display: flex;
             justify-content: center;
         }
@@ -367,4 +330,53 @@
         }
 
         
-  </style>
+  </style>    <style>
+        /* MODAL */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-actions button {
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        #cancelBtn {
+            background: #c34c4cff;
+            margin-right: 10px;
+        }
+
+        #confirmBtn {
+            background: #28a745;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .assign-btn {
+            cursor: pointer;
+        }
+    </style>

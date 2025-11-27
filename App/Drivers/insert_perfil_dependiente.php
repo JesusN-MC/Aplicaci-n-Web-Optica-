@@ -30,7 +30,7 @@ $dep = $perfil->consultarDependiente($nombres, $apellidos, $fk_usuario);
 if ($dep) {
     echo "<h3>Este dependiente ya está registrado</h3>
           <div class='center'>
-              <a class='btn-green' href='../Views/formulario_perfil_dependiente.php'>Regresar</a>
+              <a class='btn-green' href='../Views/listar_perfil_dependiente.php'>Regresar</a>
           </div>";
     exit;
 }
@@ -39,12 +39,12 @@ if ($dep) {
 if ($perfil->guardar($nombres, $apellidos, $parentesco, $fk_usuario)) {
     echo "<h3>Dependiente registrado exitosamente</h3>
           <div class='center'>
-              <a class='btn-green' href='../../index.php'>Volver al inicio</a>
+              <a class='btn-green' href='../Views/listar_perfil_dependiente.php'>Volver al inicio</a>
           </div>";
 } else {
     echo "<h3>Error al registrar el dependiente</h3>
           <div class='center'>
-              <a class='btn-green' href='../Views/formulario_perfil_dependiente.php'>Intentar de nuevo</a>
+              <a class='btn-green' href='../Views/listar_perfil_dependiente.php'>Intentar de nuevo</a>
           </div>";
 }
 ?>
