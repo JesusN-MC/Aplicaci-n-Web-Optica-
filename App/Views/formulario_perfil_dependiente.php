@@ -13,7 +13,8 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../../CSS/inputs.css">
 </head>
 <body>
-  <?php include '../../Components/Header/header_login.php'; ?>
+  <?php include '../../Components/Header/header_servicios.php'; ?>
+  <?php include '../../barraServicios2.php'; ?>
 
   <main>
     <div class="container">

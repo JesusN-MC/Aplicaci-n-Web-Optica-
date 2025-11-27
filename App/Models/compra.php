@@ -6,6 +6,7 @@ class Compra {
     }
 
     function guardar($total, $id_producto, $fk_usuario) {
+            // Establecer zona horaria SOLO para esta conexión
         $consulta = "INSERT INTO compra (id, total, fecha, hora, fk_usuario, fk_producto) VALUES (NULL, '{$total}', NOW(), CURTIME(), '{$fk_usuario}', '{$id_producto}')";
         $respuesta = $this->conexion->query($consulta);
         return $respuesta;
@@ -24,10 +25,11 @@ class Compra {
     }
 
     function consultar($id){
-        $consulta = "SELECT * FROM compra WHERE $id = {$id}";
-        $respuesta = $this->conexion->query($consulta);
-        return $respuesta;
+        $id = intval($id); // seguridad
+        $consulta = "SELECT * FROM compra WHERE id = $id LIMIT 1";
+        return $this->conexion->query($consulta);
     }
+
 }
 ?>
 

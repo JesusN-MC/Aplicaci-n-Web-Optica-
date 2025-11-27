@@ -11,7 +11,7 @@ $consultaU = "SELECT id, nombre, apellidos FROM usuario WHERE id = $idUsuario";
 $respuestaU = $conexion->query($consultaU);
 $usuario = $respuestaU->fetch_assoc();
 
-$constulaP = "SELECT id, nombres, apellidos FROM perfil WHERE fk_usuario = $idUsuario";
+$constulaP = "SELECT id, nombres, apellidos FROM perfil WHERE fk_usuario = $idUsuario AND estatus = 'A'";
 $respuestaP = $conexion->query($constulaP);
 
 $horasPosibles = [
@@ -52,7 +52,7 @@ $horasDisponibles = array_values(array_diff($horasPosibles, $horasOcupadas));
 </head>
 <body style="flex-direction: row; margin-top: 140px;">
      <?php include '../../Components/Header/header_servicios.php'; ?>
-     <?php include '../../barraServicios.php'?>
+     <?php include '../../barraServicios2.php'?>
      
     <div class="container" style="padding: 20px; padding-top:50px">
         <form action="../Drivers/fechas.php" method="POST" style="margin-bottom: 18px;">

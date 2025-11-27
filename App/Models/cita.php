@@ -17,5 +17,11 @@
             $respuesta = $this->conexion->query($consulta);
             return $respuesta;
         }
+        
+        function completar($id){
+            $consulta = "UPDATE cita SET estatus = 1 WHERE id = '{$id}'";
+            $respuesta = $this->conexion->query($consulta);
+            return $respuesta;
+        }
     }
 ?>
